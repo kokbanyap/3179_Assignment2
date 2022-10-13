@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <script src="vega_lite_vis.js"></script>
+
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="style.css" media="all">
+</head>
+
+<body>
+    <div class="body__title">
+        <img src="https://raw.githubusercontent.com/kokbanyap/3179_Assignment2/main/unemployment.jpg" alt="Unemploy" width="90%" height="400px">
+        <div class="body__title-text">Global Unemployment</div>
+    </div>
+
+    <div class="page">
+         <!-- pure grid group -->
+         <div class="pure-g">
+             <div class="pure-u-1-3">
+               <div class="description description-left">
+                 <h2>Unemployment Rate across the world</h2>
+                 <p>In the year of <span class=bold><span class = green>2019</span></span>, the world average unemployment rate has reached <span class=bold><span class = red>7.11%</span></span>,
+                  which is the <span class=bold><span class = red>lowest</span></span> over the past 10 years (2011-2021).
+                  </p>
+                  <p>The unemployment rate has <span class=red>fluctuated</span> over the years.
+                    <p> As we can see from the graph, South Africa has the <span class=red>highest</span> rate in unemployment with total <span class=bold><span class = green>28.47%</span></span>, which is most serious
+                      across the world.
+                 </p>
+               </div>
+             </div>
+             <div class="pure-u-2-3">
+               <div id="choropleth_map" class="vis-container2"></div>
+             </div>
+         </div>
+         <!-- end pure grid group -->
+     
+         <!-- pure grid group -->
+         <div class="pure-g">
+             <div class="pure-u-2-3">
+               <div id="region_pie"  class="vis-container"></div>
+             </div>
+             <div class="pure-u-1-3">
+               <div class="description description-right">
+                 <h2>Unemployment Rate by Region</h2>
+                 <p>The region <span class = red><span class = bold >Africa</span></span> has the highest rate of unemployment.
+                 <p>This is followed by <span class=green>Asia</span>, which has the second highest rate of unemployment by Region. 
+                  </p>
+               </div>
+             </div>
+         </div>
+         <!-- end pure grid group -->
+
+         <!-- pure grid group -->
+         <div class="pure-g">
+            <div class="pure-u-1-3">
+              <div class="description description-left">
+                <h2>GDP per Capita vs Unemployment Rate</h2>
+                <p>We can see that the country <span class = red><span class = bold >Luxembourg</span></span> that with a high value of GDP per Capita, has a relatively <span class = green><span class = bold >low</span></span> unemployment rate; 
+                    </p>
+                    <p>while country <span class = red><span class = bold >Sudan</span></span> that with low value of GDP per Capita, has a relatively <span class = green><span class = bold >high</span></span> unemployment rate.</p>
+                
+              </div>
+            </div>
+            <div class="pure-u-2-3">
+              <div id="scatter_plot" class="vis-container"></div>
+            </div>
+         </div>
+         <!-- end pure grid group -->
+     
+         <!-- pure grid group -->
+         <div class="pure-g">
+            <div class="pure-u-2-3">
+              <div id="unemploy_line"  class="vis-container"></div>
+            </div>
+            <div class="pure-u-1-3">
+              <div class="description description-right">
+                <h2>Global Unemployment Rate across the year</h2>
+                <p>In the year of <span class=bold><span class = green>2019</span></span>, the world average unemployment rate has reached <span class=bold><span class = red>7.11%</span></span>,
+                    which is the <span class=bold><span class = red>lowest</span></span> over the past 10 years (2011-2021).
+                  </p>
+                <p>However, in the year of <span class=bold><span class = green>2020</span></span>, the world average unemployment rate has reached <span class=bold><span class = red>8.31%</span></span>,
+                    which is the <span class=bold><span class = red>highest</span></span> over the past 10 years (2011-2021).</p>
+                <p>In conlucsion, the unemployment rate has <span class=red>fluctuated</span> over the years.</p>
+              </div>
+            </div>
+         </div>
+
+         <!-- end pure grid group -->
+
+                  <!-- pure grid group -->
+                  <div class="pure-g">
+                    <div class="pure-u-1-3">
+                      <div class="description description-left">
+                        <h2>Does Covid-19 affect global unemployment rate?</h2>
+                        <p>Here, we compare between year <span class=bold><span class = red>2019</span></span> and <span class=bold><span class = red>2020</span></span>.</p>
+                        <p>Year 2019 was before the pandemic, while year 2020 was during/after the pandemic.</p>
+                        <p>We can see that the <span class=bold><span class = green>Top 20</span></span> higest unemployment rate countries have <span class=bold><span class = red>increased</span></span> in terms of unemployment during and after the pandemic.</p>
+                      </div>
+                    </div>
+                    <div class="pure-u-2-3">
+                      <div id="covid_bar" class="vis-container"></div>
+                    </div>
+                 </div>
+                 <!-- end pure grid group -->
+
+      <div class="pure-g">
+        <div class="pure-u-1-1 small-font">
+          <p>Visualisation by Yap Kok Ban.</p>
+        </div>
+      </div>
+
+      <div class="copyr">
+        <div class="pure-u-1-1 small-font">
+            <p>&copy;2022 Copyright Reserved.
+        </div>
+      </div>
+
+       </div> <!-- end page -->
+        
+     </body>
+     </html>

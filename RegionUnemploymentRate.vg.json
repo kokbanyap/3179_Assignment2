@@ -1,0 +1,75 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Region Unemployment Rate (2019)",
+    "width": "container",
+    "height": 350,
+    "data": {
+        "url": "https://raw.githubusercontent.com/kokbanyap/3179_Assignment2/main/unemployment_dataset.csv"
+    },
+    "encoding": {
+        "theta": {
+            "aggregate": "sum",
+            "field": "2019",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Africa",
+                    "Asia",
+                    "Caribbean",
+                    "Central America",
+                    "Europe",
+                    "North America",
+                    "Oceania",
+                    "South America"
+                ],
+                "range": [
+                    "#377eb8",
+                    "#984ea3",
+                    "#ff7f00",
+                    "#a6cee3",
+                    "#006400",
+                    "#E75480",
+                    "#e41a1c",
+                    "#a65628"
+                ]
+            },
+            "legend": null
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "stroke": "#000000",
+                "tooltip": true,
+                "outerRadius": 150
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "radius": 170
+            },
+            "encoding": {
+                "text": {
+                    "field": "Region",
+                    "type": "nominal"
+                },
+                "color": {
+                    "value": "black"
+                }
+            }
+        }
+    ],
+    "config": {
+        "title": {
+            "font": "sans-serif",
+            "fontSize": 16
+        }
+    }
+}
