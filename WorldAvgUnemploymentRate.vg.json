@@ -1,32 +1,105 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 500,
+    "width": "container",
     "height": 500,
-    "title": "World Average Unemployment Rate Across the year (2011-2021)",
+    "background": "transparent",
     "data": {
-        "url": "https://raw.githubusercontent.com/kokbanyap/3179_Assignment2/main/unemployment_dataset.csv"
+        "values": [
+        {"year": "2010", "YearAvgUnemployRate": null},
+        {"year": "2011", "YearAvgUnemployRate": 8.24},
+        {"year": "2012", "YearAvgUnemployRate": 8.25},
+        {"year": "2013", "YearAvgUnemployRate": 8.27},
+        {"year": "2014", "YearAvgUnemployRate": 8.07},
+        {"year": "2015", "YearAvgUnemployRate": 7.93},
+        {"year": "2016", "YearAvgUnemployRate": 7.80},
+        {"year": "2017", "YearAvgUnemployRate": 7.52},
+        {"year": "2018", "YearAvgUnemployRate": 7.28},
+        {"year": "2019", "YearAvgUnemployRate": 7.11},
+        {"year": "2020", "YearAvgUnemployRate": 8.31},
+        {"year": "2021", "YearAvgUnemployRate": 8.29},
+        {"year": "2022", "YearAvgUnemployRate": null}
+      ],
+      "format": {
+        "parse": {"year": "date:'%Y'"}
+      }
     },
-    "layer": [{
-        "mark":"line",
-        "encoding": {
-            "x": {"field": "Year", "type":"temporal","title":"Year"},
-            "y": {"field": "YearAvgUnemployment", "type": "quantitative","title":"World Average Unemployment Rate (%)"}
-        }},{
-        "encoding":{
-            "x": {"aggregate":"max", "field":"Year", "type":"temporal"},
-            "y":{"aggregate":{"argmax":"Year"}, "field":"YearAvgUnemployment", "type":"quantitative"}
-        },
-        "layer":[{
-            "mark":{"type": "circle"}
-        }, {
-            "mark": {
-                "type": "text", "align":"right", "dx":4, "radius": 8
+    "layer": [
+      {
+        "mark": "rect",
+        "data": {
+          "values": [
+            {
+              "start": "2016",
+              "end": "2019",
+              "event": "Before Covid-19"
             },
-            "encoding": {
-                "text":{"field": "YearAvgUnemployment", "type": "quantitative"}
+            {
+              "start": "2020",
+              "end": "2021",
+              "event": "During/After Covid-19"
             }
-        }]
-    }],
-    "config": {"view": {"stroke":null}}
-}    
-
+          ],
+          "format": {
+            "parse": {"start": "date:'%Y'", "end": "date:'%Y'"}
+          }
+        },
+        "encoding": {
+          "x": {
+            "field": "start",
+            "timeUnit": "year"
+          },
+          "x2": {
+            "field": "end",
+            "timeUnit": "year"
+          },
+          "color": {"field": "event", "type": "nominal", 
+          "legend":{"title":"Events","orient": "top-left", "direction": "vertical"}}
+        }
+      },
+      {
+        "mark": {"type":"line", "point":true},
+        "encoding": {
+          "x": {
+            "field": "year",
+            "timeUnit": "year",
+            "title": "Year"
+          },
+          "y": {
+            "field": "YearAvgUnemployRate", 
+            "type": "quantitative",
+            "title": "Unemployment Rate (%)",
+            "scale":{"domain":[5,10]}
+        },
+          "color": {"value": "black"}
+        }
+      },
+      {
+        "mark": "point",
+        "encoding": {
+          "x": {
+            "field": "year",
+            "timeUnit": "year"
+          },
+          "y": {"field": "YearAvgUnemployRate", "type": "quantitative"},
+          "color": {"value": "white"},"opacity": {"value":1},
+          "tooltip": [
+            {"field": "year", "type": "temporal", "format":"%Y", "title":"Year"},
+            {"field": "YearAvgUnemployRate", "type": "quantitative", "title":"World Average Unemployment Rate (%)"}
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align":"center",
+          "baseline":"middle"
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "timeUnit": "year"
+          }
+        }
+      }
+    ]
+  }

@@ -1,0 +1,74 @@
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.title{
+    font-family: 'Ubuntu';
+    color: #865c0e;
+    background-color: #f5f2e7;
+}
+
+h1{
+    font-family: 'Ubuntu';
+    font-weight: 900;
+    font-size: 48px;
+}
+
+.date{
+    font-weight: 780;
+    font-size: 30px;
+}
+
+.description h2{
+    font-size: 30px;
+    font-weight: 800;
+    color: #865c0e;
+}
+
+.highlight{
+    font-weight: bold;
+}
+
+.dark-text{
+    font-size: x-large;
+    color: #a46917;
+}
+
+.light-text{
+    font-size: x-large;
+    color: #d6ad4d;
+}
+
+.europe-text{
+    color: #4477AA;
+}
+
+.north-america-text{
+    color: #66CCEE;
+}
+
+.south-america-text{
+    color: #228833;
+}
+
+.asia-text{
+    color: #EE6677;
+}
+
+.oceania-text{
+    color: #CCBB44;
+}
+
+.africa-text{
+    color: #AA3377;
+}
+
+.cite{
+    font-style: italic;
+}
+
+.footer{
+    font-weight: bold;
+    font-size: 14px;
+    color: #178CA4;
+}

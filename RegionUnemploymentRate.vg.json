@@ -1,17 +1,33 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Region Unemployment Rate (2019)",
     "width": "container",
-    "height": 350,
+    "height": 500,
     "data": {
         "url": "https://raw.githubusercontent.com/kokbanyap/3179_Assignment2/main/unemployment_dataset.csv"
     },
+    "background": "transparent",
+    "transform": [
+        {
+            "aggregate": [{
+                "op": "mean",
+                "field": "2019_UR",
+                "as": "Average_Region_UR"
+            }],
+            "groupby": ["Region"]
+        }
+    ],
     "encoding": {
         "theta": {
-            "aggregate": "sum",
-            "field": "2019",
+            "field": "Average_Region_UR",
             "type": "quantitative",
             "stack": true
+        },
+        "radius": {
+            "field": "Average_Region_UR",
+            "scale": {"type": "sqrt", "zero":true, "rangeMin":2}
+        },
+        "order":{
+            "field": "Average_Region_UR", "type": "quantitative"
         },
         "color": {
             "field": "Region",
@@ -27,33 +43,29 @@
                     "Oceania",
                     "South America"
                 ],
-                "range": [
-                    "#377eb8",
-                    "#984ea3",
-                    "#ff7f00",
-                    "#a6cee3",
-                    "#006400",
-                    "#E75480",
-                    "#e41a1c",
-                    "#a65628"
-                ]
+                "scheme": "category10"
             },
             "legend": null
-        }
+        },
+        "tooltip": [
+            {"field": "Region", "type": "nominal", "title":"Region"},
+            {"field": "Average_Region_UR", "type": "quantitative", "format":".2f", "title":"Unemployment Rate (%)"}
+        ]
     },
     "layer": [
         {
             "mark": {
                 "type": "arc",
+                "innerRadius": 20,
                 "stroke": "#000000",
-                "tooltip": true,
-                "outerRadius": 150
+                "tooltip": true
             }
         },
         {
             "mark": {
                 "type": "text",
-                "radius": 170
+                "radiusOffset": 28,
+                "fontSize": 11
             },
             "encoding": {
                 "text": {
@@ -70,6 +82,11 @@
         "title": {
             "font": "sans-serif",
             "fontSize": 16
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
         }
     }
 }

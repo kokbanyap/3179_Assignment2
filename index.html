@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
+    <title>Global Unemployment Rate</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Import Vega & Vega-Lite-->
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
@@ -17,121 +19,185 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 
     <!-- CSS file -->
     <link rel="stylesheet" type="text/css" href="style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="font.css" media="all">
+
 </head>
+<body>
+
+<div class="page">
+  <!-- Title -->
+  <div class="title">
+    <h1>GLOBAL UNEMPLOYMENT &nbsp;<span class="date">as of 2019</span></h1>
+  </div>  
+
+  <hr class="section-line">
 
 <body>
-    <div class="body__title">
-        <img src="https://raw.githubusercontent.com/kokbanyap/3179_Assignment2/main/unemployment.jpg" alt="Unemploy" width="90%" height="400px">
-        <div class="body__title-text">Global Unemployment</div>
+  <div class="image">
+    <div>
+        <img src="https://raw.githubusercontent.com/kokbanyap/3179_Assignment2/main/unemployment_image.jpg" alt="Unemploy" width="100%" height="400px">
     </div>
 
-    <div class="page">
-         <!-- pure grid group -->
-         <div class="pure-g">
-             <div class="pure-u-1-3">
-               <div class="description description-left">
-                 <h2>Unemployment Rate across the world</h2>
-                 <p>In the year of <span class=bold><span class = green>2019</span></span>, the world average unemployment rate has reached <span class=bold><span class = red>7.11%</span></span>,
-                  which is the <span class=bold><span class = red>lowest</span></span> over the past 10 years (2011-2021).
-                  </p>
-                  <p>The unemployment rate has <span class=red>fluctuated</span> over the years.
-                    <p> As we can see from the graph, South Africa has the <span class=red>highest</span> rate in unemployment with total <span class=bold><span class = green>28.47%</span></span>, which is most serious
-                      across the world.
-                 </p>
-               </div>
-             </div>
-             <div class="pure-u-2-3">
-               <div id="choropleth_map" class="vis-container2"></div>
-             </div>
-         </div>
-         <!-- end pure grid group -->
-     
-         <!-- pure grid group -->
-         <div class="pure-g">
-             <div class="pure-u-2-3">
-               <div id="region_pie"  class="vis-container"></div>
-             </div>
-             <div class="pure-u-1-3">
-               <div class="description description-right">
-                 <h2>Unemployment Rate by Region</h2>
-                 <p>The region <span class = red><span class = bold >Africa</span></span> has the highest rate of unemployment.
-                 <p>This is followed by <span class=green>Asia</span>, which has the second highest rate of unemployment by Region. 
-                  </p>
-               </div>
-             </div>
-         </div>
-         <!-- end pure grid group -->
+    <hr class="section-line">
 
-         <!-- pure grid group -->
-         <div class="pure-g">
-            <div class="pure-u-1-3">
-              <div class="description description-left">
-                <h2>GDP per Capita vs Unemployment Rate</h2>
-                <p>We can see that the country <span class = red><span class = bold >Luxembourg</span></span> that with a high value of GDP per Capita, has a relatively <span class = green><span class = bold >low</span></span> unemployment rate; 
-                    </p>
-                    <p>while country <span class = red><span class = bold >Sudan</span></span> that with low value of GDP per Capita, has a relatively <span class = green><span class = bold >high</span></span> unemployment rate.</p>
-                
-              </div>
-            </div>
-            <div class="pure-u-2-3">
-              <div id="scatter_plot" class="vis-container"></div>
-            </div>
-         </div>
-         <!-- end pure grid group -->
-     
-         <!-- pure grid group -->
-         <div class="pure-g">
-            <div class="pure-u-2-3">
-              <div id="unemploy_line"  class="vis-container"></div>
-            </div>
-            <div class="pure-u-1-3">
-              <div class="description description-right">
-                <h2>Global Unemployment Rate across the year</h2>
-                <p>In the year of <span class=bold><span class = green>2019</span></span>, the world average unemployment rate has reached <span class=bold><span class = red>7.11%</span></span>,
-                    which is the <span class=bold><span class = red>lowest</span></span> over the past 10 years (2011-2021).
-                  </p>
-                <p>However, in the year of <span class=bold><span class = green>2020</span></span>, the world average unemployment rate has reached <span class=bold><span class = red>8.31%</span></span>,
-                    which is the <span class=bold><span class = red>highest</span></span> over the past 10 years (2011-2021).</p>
-                <p>In conlucsion, the unemployment rate has <span class=red>fluctuated</span> over the years.</p>
-              </div>
-            </div>
-         </div>
-
-         <!-- end pure grid group -->
-
-                  <!-- pure grid group -->
-                  <div class="pure-g">
-                    <div class="pure-u-1-3">
-                      <div class="description description-left">
-                        <h2>Does Covid-19 affect global unemployment rate?</h2>
-                        <p>Here, we compare between year <span class=bold><span class = red>2019</span></span> and <span class=bold><span class = red>2020</span></span>.</p>
-                        <p>Year 2019 was before the pandemic, while year 2020 was during/after the pandemic.</p>
-                        <p>We can see that the <span class=bold><span class = green>Top 20</span></span> higest unemployment rate countries have <span class=bold><span class = red>increased</span></span> in terms of unemployment during and after the pandemic.</p>
-                      </div>
-                    </div>
-                    <div class="pure-u-2-3">
-                      <div id="covid_bar" class="vis-container"></div>
-                    </div>
-                 </div>
-                 <!-- end pure grid group -->
-
-      <div class="pure-g">
-        <div class="pure-u-1-1 small-font">
-          <p>Visualisation by Yap Kok Ban.</p>
+    <!-- Map -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="description description-left">
+          <h2>Unemployment Rate <div> by Country (2019)</h2>
+          <p>
+            Unemployment is obviously one of the <span class="highlight">world's most serious problems</span>; certain regions have very low unemployment rates, 
+            while others have very high rates, but the truth is that people all around the world are struggling 
+            with this issue. 
+          </p>
+          <p>
+            The global unemployment rate for <span class="highlight dark-text">2019</span> was <span class="highlight light-text">7.11%</span>, a 0.17% decline from 2018. The map displayed here shows how the 
+            Unemployment rate varies by country. The shade of the country corresponds to the magnitude of the indicator. 
+            The darker the shade, the higher the value.
+          </p>
+          <p>
+            Despite the fact that many governments are taking significant steps to address the issue, the problem 
+            continues to persist around the world. There are a <span class="highlight">number of reasons for unemployment</span>. These include
+            recessions, depressions, technological improvements, job outsourcing, and voluntarily leaving one job to find another.
+          </p>
+          <p>
+            This sums up the Map of the Worldwide Unemployment.
+          </p>
         </div>
       </div>
-
-      <div class="copyr">
-        <div class="pure-u-1-1 small-font">
-            <p>&copy;2022 Copyright Reserved.
+      <div class="pure-u-2-3">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- End of Map -->
+    
+    <!-- Radial Chart -->
+    <div class="pure-g">
+      <div class="pure-u-2-3">
+        <div class="description description-left">
+          <h2>Unemployment Rate <div> by Region (2019)</h2>
+          <p>
+            The unemployment rate is undoubtedly an important indicator of economic and social well-being. 
+            Here, to explore more on the regional unemployment rate in the year of 2019, we <span class="highlight">breakdown by region</span>
+            and show that large international differences hide even larger differences among regions within each country. 
+          </p>
+          <p>
+            Based on the chart, the <span class="highlight dark-text">Africa</span> region ranks the <span class="highlight dark-text">highest</span> in unemployment rate, which is total of <span class="highlight light-text">9.26%</span> in terms of the unemployment rate;
+            while the Caribbean region ranks the second highest in unemployment rate, which is total of 9.20%. This is followed by South America, Europe, 
+            Central America, and Oceania. Lastly, Asia has the second lowest unemployment rate, while North 
+            <span class="highlight dark-text">America</span> has the <span class="highlight dark-text">lowest</span> unemployment rate by region, which is a total of <span class="highlight light-text">4.27%</span> unemployment rate.
+          </p>
+          <p>
+            Africa region has been suffer in the issue of unemployment for years, and the causes of current high youth unemployment 
+            include inadequate skills, lack of experience, and a mismatch between education and training and requisite job skills. 
+            Other factors include <span class="highlight">economies' low growth</span> and <span class="highlight">job creation's slow pace</span>. Furthermore, Nigeria and Ethiopia had the highest number 
+            of people employed in Africa. Their working population amounted to around 60 million and 56 million respectively, which is a scary amount of
+            number.
+          </p>
+          <p>
+            This concludes the regional unemployment rate in 2019.
+          </p>  
         </div>
       </div>
+      <div class="pure-u-1-3">
+        <div id="vis2"  class="vis-container"></div>
+    </div>
+    <!-- End of Radial Chart -->
 
-       </div> <!-- end page -->
-        
-     </body>
-     </html>
+    <!-- Scatter Plot  -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="description description-left">
+          <h2>Gross Domestic Product and Unemployment (2019)</h2>
+          <p>
+            According to the principle established by <span class="highlight">Okun's Law</span> (Okun, 1962), there is a corresponding two 
+            percent increase in employment for every established one percent increase in GDP. The principle 
+            states that GDP levels are driven by the principles of demand and supply, and as such, an increase 
+            in demand leads to an increase in GDP. Such an increase in demand must be accompanied by a corresponding 
+            increase in productivity and employment to keep up with the demand.
+          </p>
+          <p>
+            With that, we will now explore more on the <span class="highlight">relationship between GDP and Unemployment Rate</span>.
+          </p>
+          <p>
+            GDP and unemployment rates are linked in the sense that both are <span class="highlight">macroeconomic factors</span> that are used to 
+            gauge the state of an economy. (Esther, 2022) A rise in the GDP is significant in the study of macroeconomic 
+            trends in a nation. This is also true of a rise or decrease in unemployment levels. GDP and unemployment 
+            rates usually go together because a decrease in the GDP is reflected in a decrease in the rate of employment.
+          </p>
+          <p>
+            This sums up the relationship between GDP per Capita and Unemployment Rate of a country.
+          </p>
+        </div>
+      </div>
+      <div class="pure-u-2-3">
+        <div id="vis3"  class="vis-container"></div>
+      </div> 
+    </div>
+    <!-- End of Scatter Plot -->
+    
+    <!-- Line Graph -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="description description-left">
+          <h2>The Rise of Covid-19 Event</h2>
+          <p>
+            Unemployment Rate in the world <span class="highlight">averaged 7.91% from 2011 until 2021</span>, reaching an all time high of 8.31 
+            percent in the year of 2020 and a record low of 7.11 percent in the year of 2019.
+          </p>
+          <p>
+            This graph addresses some questions about the effect of the Covid-19 pandemic on the unemployment rate. 
+          </p>
+          <p>
+            As we can see, the unemployment rate jumped in <span class="highlight dark-text">2020</span> at <span class="highlight light-text">8.31%</span>, 
+            to a rate <span class="highlight">not seen since 2011</span> and in <span class="highlight dark-text">2021</span> stood at <span class="highlight light-text">8.29%</span>, compared with only 0.02 percent in 2020. Caused by the Covid-19, the unemployment rate has 
+            reached a peak in the year of 2020 at 8.31% worldwide - Most people were unable to work because their employer 
+            lost or closed their businesses due to the pandemic. It was an <span class="highlight">unprecedented joblessness amount</span> since employment 
+            data collection started in 1948.
+          </p>
+          <p>
+            This concludes the effect of the Rise of Covid-19 on Unemployment Rate.
+          </p>
+        </div>
+      </div>
+      <div class="pure-u-2-3">
+        <div id="vis4"  class="vis-container"></div>
+      </div>    
+    </div>
+    <!-- Line Graph -->
+
+    <!-- Bar Chart -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="description description-left">
+          <h2>Before & During/After <div> Covid-19 Event</h2>
+          <p>
+            Let us investigate further on the unemployment rate of 20 countries before and during/after Covid-19 pandemic. 
+            These 20 countries rank in the first 20 places in unemployment rate. Caused by the Covid-19, all of the countries 
+            above have <span class="highlight">increased in unemployment rate</span>. 
+          </p>
+          <p>
+            Not to mention, the average unemployment rate of these 20 countries <span class="highlight dark-text">before 
+            Covid-19</span> pandemic was only <span class="highlight light-text">17.97%</span> in total, however, <span class="highlight dark-text">during or 
+            after the Covid-19</span> pandemic, the average unemployment rate has increased to <span class="highlight light-text">20.86%</span>. This shows that Covid-19 has 
+            affected unemployment issue to be even <span class="highlight">more serious compared to previous years</span>.
+          </p>
+          <p>
+            This sums up the comparison of unemployment rates before and after the Covid-19 pandemic.
+          </p>
+        </div>
+      </div>
+      <div class="pure-u-2-3">
+        <div id="vis5"  class="vis-container"></div>
+    </div>
+    <!-- Bar Chart -->
+  </div>
+
+
+  
+</body>
+</html>

@@ -1,9 +1,9 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title":"Global Unemployment Rate (2019)",
-    "width":750,
+    "width":"container",
     "height":500,
     "projection":{"type":"equalEarth"},
+    "background": "transparent",
     "layer":[
         {
             "data":{
@@ -18,14 +18,29 @@
                 "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
                 "format":{"type":"topojson","feature":"oceans"}
                 },
-                "mark":{"type":"geoshape","fill":"skyblue"}
+                "mark":{"type":"geoshape","fill":"cadetblue"}
         },
         {
             "data":{
                 "url": "https://raw.githubusercontent.com/kokbanyap/FIT3179_Homework9/main/ne_110m_admin_0_countries.json",
                 "format":{"type":"topojson","feature":"ne_110m_graticules_30"}
                 },
-                "mark":{"type":"geoshape","fill":null,"stroke":"darkgray"}
+                "mark":{"type":"geoshape","fill":null,"stroke":"lightgray"}
+        },
+        {
+            "data":{
+                "url": "https://raw.githubusercontent.com/kokbanyap/FIT3179_Homework9/main/ne_110m_admin_0_countries.json",
+                "format":{"type":"topojson","feature":"ne_110m_admin_0_countries"}
+            },
+            "transform": [
+              {"calculate": "'Data is not available for this country.'", "as": "unavailable_temp"}
+            ],
+            "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "black", "strokeWidth":0.2},
+            "encoding": {
+              "tooltip": {
+                "field": "unavailable_temp"
+              }
+            }
         },
         {
             "data":{
@@ -40,28 +55,113 @@
                             "url": "https://raw.githubusercontent.com/kokbanyap/3179_Assignment2/main/unemployment_dataset.csv"
                         },
                         "key": "CountryName",
-                        "fields": ["2019"]
+                        "fields": ["2019_UR"]
                     }
                 }
             ],
-            "mark":{"type":"geoshape"},
+            "mark":{"type":"geoshape", "stroke": "black", "strokeWidth":0.2},
             "encoding": {
                 "color":{
-                    "field":"2019",
+                    "field":"2019_UR",
                     "type":"quantitative",
-                    "legend":{"title":"Unemployment Rate (%)"},
+                    "legend":{
+                        "title":"Unemployment Rate (%)",
+                        "orient": "top-left",
+                        "direction": "vertical"
+                    },
                     "scale":{
                         "type":"threshold",
                         "domain":[5,10,15,20,25,30,35],
-                        "range":["#fff992","#f6e683","#edd273","#e4bf64","#dbac54","#d19845","#c88535","#bf7226","b65e16"]
+                        "scheme": "yelloworangebrown"                    
                     }
                 },
                 "tooltip":[
                     {"field":"properties.NAME","type": "nominal","title":"Country"},
-                    {"field":"2019","type":"quantitative","title":"Unemployment Rate (%)"}
+                    {"field":"2019_UR","type":"quantitative","title":"Unemployment Rate (%)"}
                 ]
             }
+        },
+        {
+            "data": {
+                "values": [
+                    {"CountryName": "South Africa"}
+                ]
+            },
+            "mark": {
+                "type": "text",
+                "dx": 30,
+                "dy": 125
+            },
+            "encoding": {
+                "text": {"field": "CountryName"}
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {"CountryName": "Canada"}
+                ]
+            },
+            "mark": {
+                "type": "text",
+                "dx": -90,
+                "dy": -143
+            },
+            "encoding": {
+                "text": {"field": "CountryName"}
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {"CountryName": "Australia"}
+                ]
+            },
+            "mark": {
+                "type": "text",
+                "dx": 238,
+                "dy": 105
+            },
+            "encoding": {
+                "text": {"field": "CountryName"}
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {"CountryName": "Peru"}
+                ]
+            },
+            "mark": {
+                "type": "text",
+                "dx": -210,
+                "dy": 30
+            },
+            "encoding": {
+                "text": {"field": "CountryName"}
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {"CountryName": "China"}
+                ]
+            },
+            "mark": {
+                "type": "text",
+                "dx": 300,
+                "dy": -85
+            },
+            "encoding": {
+                "text": {"field": "CountryName"}
+            }
         }
-    ]
-    
+    ],
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
 }

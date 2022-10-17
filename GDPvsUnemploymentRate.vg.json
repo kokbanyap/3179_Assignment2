@@ -1,11 +1,11 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
+    "width": "container",
     "height": 500,
-    "title": "GDP per Capita vs Unemployment Rate (2019)",
     "data":{
         "url": "https://raw.githubusercontent.com/kokbanyap/3179_Assignment2/main/unemployment_dataset.csv"
     },
+    "background": "transparent",
     "params": [
         {
             "name": "Region_selection",
@@ -35,14 +35,26 @@
                 ],
                 "name": "Select Region: "
             }
+        },
+        {
+            "name": "Population_Above",
+            "value": 0,
+            "bind": {
+                "input": "range",
+                "min": 0,
+                "max": 100000000,
+                "step": 1000000,
+                "name": "Minimum Population: "
+            }
         }
     ],
     "transform": [
-        {"filter":"Region_selection == null || datum.Region == Region_selection"}
+        {"filter":"Region_selection == null || datum.Region == Region_selection"},
+        {"filter":"datum.Population > Population_Above"}
     ],
     "encoding": {
         "x": {
-            "field": "2019",
+            "field": "2019_UR",
             "type": "quantitative",
             "title": "Unemployment Rate (%)",
             "axis": {"tickCount": 10},
@@ -75,23 +87,24 @@
                             "Oceania",
                             "South America"
                         ],
-                        "range": [
-                            "#377eb8",
-                            "#984ea3",
-                            "#ff7f00",
-                            "#a6cee3",
-                            "#006400",
-                            "#E75480",
-                            "#e41a1c",
-                            "#a65628"
-                        ]
+                        "scheme": "category10"
                     }
                 },
-                "opacity": {"value": 0.8},
+                "opacity": {"value": 1},
+                "size":{
+                    "field": "Population",
+                    "type":"quantitative",
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+                        "range": [10, 50, 150, 200, 300, 400]
+                    },
+                    "legend": {"format": ".1s"}
+                },
                 "tooltip": [
                     {"field": "CountryName", "type": "nominal","title":"Country"},
                     {"field": "Region", "type": "nominal","title":"Region"},
-                    {"field": "2019", "type": "quantitative","title":"Unemployment Rate (%)"},
+                    {"field": "2019_UR", "type": "quantitative","title":"Unemployment Rate (%)"},
                     {"field": "GDPPerCapita2019", "type": "quantitative", "title":"GDP per Capita"}
                 ]
             }
@@ -110,7 +123,7 @@
                 "color": {"value": "black"},
                 "opacity":{
                     "condition":{
-                        "test": "datum['CountryName'] =='South Africa' || datum['CountryName'] == 'Australia' || datum['CountryName'] =='France' || datum['CountryName'] == 'Malaysia' || datum['CountryName'] =='Luxembourg' || datum['CountryName'] == 'Greece' || datum['CountryName'] == 'Spain' || datum['CountryName'] == 'Yemen'",
+                        "test": "datum['CountryName'] =='South Africa' || datum['CountryName'] == 'Gambia' || datum['CountryName'] =='France' || datum['CountryName'] == 'Burundi' || datum['CountryName'] =='Luxembourg' || datum['CountryName'] == 'Greece' || datum['CountryName'] == 'Spain' || datum['CountryName'] == 'Sudan'",
                         "value": 1
                     },
                     "value": 0
@@ -118,10 +131,32 @@
                 "tooltip":[
                     {"field": "CountryName", "type": "nominal","title":"Country"},
                     {"field": "Region", "type": "nominal","title":"Region"},
-                    {"field": "2019", "type": "quantitative","title":"Unemployment Rate (%)"},
+                    {"field": "2019_UR", "type": "quantitative","title":"Unemployment Rate (%)"},
                     {"field": "GDPPerCapita2019", "type": "quantitative", "title":"GDP per Capita"}
                 ]    
             }
-        }    
+        },
+        {
+            "mark":{
+                "type":"line",
+                "color":"red",
+                "strokeWidth":0.8
+            },
+            "transform":[{
+                "regression": "GDPPerCapita2019",
+                "on": "2019_UR",
+                "extent": [0,27]
+            }],
+            "encoding": {
+                "x":{
+                    "field":"2019_UR",
+                    "type": "quantitative"
+                },
+                "y":{
+                    "field":"GDPPerCapita2019",
+                    "type": "quantitative"
+                }
+            }
+        }
     ]
 }

@@ -1,26 +1,26 @@
-var vg_1="GDPvsUnemploymentRate.vg.json";
-var vg_2="GlobalUnemploymentRate.vg.json";
-var vg_3="RegionUnemploymentRate.vg.json";
-var vg_4="CovidImpactUnemployment.vg.json";
-var vg_5="WorldAvgUnemploymentRate.vg.json";
+var vg_1="GlobalUnemploymentRate.vg.json";
+var vg_2="RegionUnemploymentRate.vg.json";
+var vg_3="GDPvsUnemploymentRate.vg.json";
+var vg_4="WorldAvgUnemploymentRate.vg.json";
+var vg_5="CovidImpactUnemployment.vg.json";
 
-vegaEmbed("#scatter_plot",vg_1).then(function(result){
-
-}).catch(console.error);
-
-vegaEmbed("#choropleth_map",vg_2).then(function(result){
+vegaEmbed("#vis1",vg_1, {"actions": false}).then(function(result){
 
 }).catch(console.error);
 
-vegaEmbed("#region_pie",vg_3).then(function(result){
+vegaEmbed("#vis2",vg_2, {"actions": false}).then(function(result){
 
 }).catch(console.error);
 
-vegaEmbed("#covid_bar",vg_4).then(function(result){
+vegaEmbed("#vis3",vg_3, {"actions": false}).then(function(result){
+
+}).catch(console.error);
+
+vegaEmbed("#vis4",vg_4, {"actions": false}).then(function(result){
 
 }).catch(console.error);
 
 
-vegaEmbed("#unemploy_line",vg_5).then(function(result){
+vegaEmbed("#vis5",vg_5, {"actions": false}).then(function(result){
 
 }).catch(console.error);
